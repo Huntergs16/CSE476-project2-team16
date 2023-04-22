@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="649b5a19-c709-4fb3-9763-9fdbd7c29449" name="cse476-team16-project2" url="http://webdev.cse.msu.edu/~samoyhun/cse476/project2">
+        <fileTransfer rootFolder="/user/samoyhun/classweb/cse476/project2" accessType="SFTP" host="arctic.cse.msu.edu" port="22" sshConfigId="00e27878-9090-49f8-a986-c627dfa5bfd5" sshConfig="samoyhun@arctic.cse.msu.edu:22 password">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" keepAliveTimeout="0" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
