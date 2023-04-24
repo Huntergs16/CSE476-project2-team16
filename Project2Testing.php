@@ -30,5 +30,14 @@ $magic = "uAss+5%FP'hK&65";
     <p> <input type="submit" value="Test Login" /></p>
 </form>
 
+<hr />
+<h2>Create Game Testing</h2>
+<form method="post" target="_blank" action="<?php echo $base_url; ?>create-game.php">
+    <input type="hidden" name="magic" value="<?php echo $magic; ?>" />
+    <p>username: <input type="text" name="user" value="<?php echo $user; ?>" /></p>
+    <p>Password: <input type="text" name="pw" value="<?php echo $password;?>"/></p>
+    <p> <input type="submit" value="Test Create Game" /></p>
+</form>
+
 </body>
 </html>

@@ -29,7 +29,6 @@ $user = $_GET["user"];
 $password = $_GET["pw"];
 
 $pdo = pdo_connect();
-
 $userid = getUser($pdo, $user, $password);
 
 if ($userid) {

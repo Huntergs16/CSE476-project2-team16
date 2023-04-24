@@ -20,7 +20,7 @@ if(!isset($_POST['pw'])) {
 }
 
 if($_POST['magic'] != "uAss+5%FP'hK&65") {
-    echo '<connect4 status="no" msg="wrong magic word" /&>';
+    echo '<connect4 status="no" msg="wrong magic word" />';
     exit;
 }
 
@@ -30,16 +30,16 @@ $password = $_POST["pw"];
 $pdo = pdo_connect();
 
 //echo '<connect4 status="yes" msg="checking user" /&>';
-if (checkUser($pdo, $user, $password)) {
+if (checkUser($pdo, $user)) {
     createUser($pdo, $user, $password);
 }
 
-function checkUser($pdo, $user, $password) {
+function checkUser($pdo, $user) {
     // Does the user exist in the database?
     $userQ = $pdo->quote($user);
-    $query = "SELECT id, password from users where username=$userQ";
+    $query = "SELECT user_id, password from users where username=$userQ";
     $rows = $pdo->query($query);
-    if($row = $rows->fetch()) {
+    if($rows->fetch()) {
         echo '<connect4 status="no" msg="user already exists" />';
         exit;
     }

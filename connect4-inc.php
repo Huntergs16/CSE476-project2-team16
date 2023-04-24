@@ -4,7 +4,7 @@ require_once "db.inc.php";
 function getUser($pdo, $user, $password) {
     // Does the user exist in the database?
     $userQ = $pdo->quote($user);
-    $query = "SELECT id, password from users where username=$userQ";
+    $query = "SELECT user_id, password from users WHERE username=$userQ";
     $rows = $pdo->query($query);
     if($row = $rows->fetch()) {
         // We found the record in the database
@@ -14,9 +14,9 @@ function getUser($pdo, $user, $password) {
             exit;
         }
 
-        return $row['id'];
+        return $row['user_id'];
     }
 
-    echo '<connect4 status="no" msg="user does not exist" />';
+    echo '<connect4 status="no" msg="user error" />';
     exit;
 }
