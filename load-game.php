@@ -4,66 +4,50 @@ require "connect4-inc.php";
 
 echo '<?xml version="1.0" encoding="UTF-8" ?>';
 
-// Ensure the player1_id post item exists
-if(!isset($_POST['user'])) {
-    echo '<connect4 status="no" msg="missing username" />';
+
+// Ensure the userid post item exists
+if(!isset($_GET['user'])) {
+    echo '<connect4 status="no" msg="missing user" />';
     exit;
 }
-
+// Ensure the magic post item exists
+if(!isset($_GET['magic'])) {
+    echo '<connect4 status="no" msg="missing magic" />';
+    exit;
+}
 // Ensure the password post item exists
-if(!isset($_POST['pw'])) {
+if(!isset($_GET['pw'])) {
     echo '<connect4 status="no" msg="missing password" />';
     exit;
 }
 
-if(!isset($_POST['magic']) || $_POST['magic'] != "uAss+5%FP'hK&65") {
-    echo '<connect4 status="no" msg="magic" />';
+if($_GET['magic'] != "uAss+5%FP'hK&65") {
+    echo '<connect4 status="no" msg="wrong magic word" /&>';
     exit;
 }
 
-$player1 = $_POST["user"];
-$password = $_POST["pw"];
+// Ensure the game_id post item exists
+if(!isset($_GET['game_id'])) {
+    echo '<connect4 status="no" msg="missing game_id" />';
+    exit;
+}
+
+$game_id = $_GET['game_id'];
+$user = $_GET["user"];
+$password = $_GET["pw"];
 
 $pdo = pdo_connect();
 
-// Check if the user is valid???
-$player1_id = getUser($pdo, $player1, $password);
+$userid = getUser($pdo, $user, $password);
 
-$create_query = <<<QUERY
-INSERT INTO games(player1_id, current_player_id)
-VALUES($player1_id, $player1_id)
-QUERY;
-$rows = $pdo->query($create_query);
-$game_id = null;
-if (!$rows) {
-    echo '<connect4 status="no" msg="failed to create game" />';
-    exit;
+if ($userid) {
+    loadGame($pdo, $game_id, $userid);
 } else {
-    $game_id = $pdo->lastInsertId();
-    createGameBoard($pdo, $game_id);
-    loadInitialGame($pdo, $game_id);
+    echo '<connect4 status="no" msg="user invalid">';
+    exit;
 }
 
-echo '<connect4 status="yes" msg="Game session and board created" />';
-exit;
-
-
-function createGameBoard($pdo, $game_id) {
-    // Initialize the game board
-    for($i = 1; $i <= 7; $i++) {
-        $query = <<<QUERY
-INSERT INTO columns(game_id, position)
-VALUES($game_id, $i)
-QUERY;
-
-        if(!$pdo->query($query)) {
-            echo '<connect4 status="no" msg="board initialization failed" />';
-            exit;
-        }
-    }
-}
-
-function loadInitialGame($pdo, $game_id) {
+function loadGame($pdo, $game_id, $user_id) {
     // add user_id as player2_id to games table figure out how to do player1
     // generate board
     // Does the user exist in the database?
@@ -73,6 +57,10 @@ function loadInitialGame($pdo, $game_id) {
         echo '<connect4 status="no" msg="game does not exist">';
         exit;
     }
+
+    // Add the current user as the second player
+    $add_second_player_query = "UPDATE games SET player2_id = $user_id WHERE game_id = $game_id";
+    $pdo->query($add_second_player_query);
 
     // echo the gameboard.
     $board_query = "SELECT position, spot1, spot2, spot3, spot4, spot5, spot6 FROM columns WHERE game_id = $game_id";
@@ -99,4 +87,3 @@ function loadInitialGame($pdo, $game_id) {
     echo "</connect4>";
     exit;
 }
-
