@@ -3,9 +3,8 @@ require_once "db.inc.php";
 require "connect4-inc.php";
 
 echo '<?xml version="1.0" encoding="UTF-8" ?>';
-echo '<connect4 status="no" msg="missing user" />';
+
 // Ensure the userid post item exists
-//
 if(!isset($_GET['user'])) {
     echo '<connect4 status="no" msg="missing user" />';
     exit;
@@ -30,8 +29,6 @@ $player1 = $_GET["user"];
 $password = $_GET["pw"];
 $pdo = pdo_connect();
 $player1_id = getUser($pdo, $player1, $password);
-echo '<connect4 status="no" msg="failed to delete game maybe there is no game to delete" />';
-exit;
 $query = "SELECT game_id, from games WHERE player1_id=$player1_id OR player2_id=$player1_id";
 $rows = $pdo->query($query);
 if (!$rows) {
