@@ -49,5 +49,15 @@ $magic = "uAss+5%FP'hK&65";
     <p> <input type="submit" value="Test Load Game" /></p>
 </form>
 
+<hr />
+<h2>Delete Game Testing</h2>
+<form method="get" target="_blank" action="<?php echo $base_url; ?>delete-game.php">
+    <input type="hidden" name="magic" value="<?php echo $magic; ?>" />
+    <input type="text" name="user" value="<?php echo $user; ?>" />
+    <input type="text" name="pw" value="<?php echo $password; ?>" />
+    <!--<input type="text" name="game_id" value="" />-->
+    <p> <input type="submit" value="Test Delete Game" /></p>
+</form>
+
 </body>
 </html>
