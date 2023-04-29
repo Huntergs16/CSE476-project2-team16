@@ -5,6 +5,7 @@ require "connect4-inc.php";
 echo '<?xml version="1.0" encoding="UTF-8" ?>';
 echo '<connect4 status="no" msg="missing user" />';
 // Ensure the userid post item exists
+//
 if(!isset($_GET['user'])) {
     echo '<connect4 status="no" msg="missing user" />';
     exit;
