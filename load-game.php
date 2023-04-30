@@ -26,7 +26,7 @@ if($_GET['magic'] != "uAss+5%FP'hK&65") {
     exit;
 }
 
-// Ensure the game_id post item exists
+// Ensure the game_id item exists
 if(!isset($_GET['game_id'])) {
     echo '<connect4 status="no" msg="missing game_id" />';
     exit;
@@ -50,7 +50,6 @@ if ($userid) {
 function loadGame($pdo, $game_id, $user_id) {
     // add user_id as player2_id to games table figure out how to do player1
     // generate board
-    // Does the user exist in the database?
     $query = "SELECT COUNT(*) FROM games WHERE game_id = $game_id";
     $result = $pdo->query($query)->fetchColumn();
     if ($result == 0) {

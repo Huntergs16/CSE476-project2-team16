@@ -45,7 +45,7 @@ $magic = "uAss+5%FP'hK&65";
     <input type="hidden" name="magic" value="<?php echo $magic; ?>" />
     <input type="text" name="user" value="<?php echo $user; ?>" />
     <input type="text" name="pw" value="<?php echo $password; ?>" />
-    <input type="text" name="game_id" value="" />
+    <input type="text" name="game_id"/>
     <p> <input type="submit" value="Test Load Game" /></p>
 </form>
 
@@ -65,6 +65,18 @@ $magic = "uAss+5%FP'hK&65";
 <form method="get" target="_blank" action="<?php echo $base_url; ?>list-games.php">
     <input type="hidden" name="magic" value="<?php echo $magic; ?>" />
     <input type="submit" value="Test listing games" />
+</form>
+
+<hr />
+<h2>Update Game Testing</h2>
+<form method="post" target="_blank" action="<?php echo $base_url; ?>update-game.php">
+    <input type="hidden" name="magic" value="<?php echo $magic; ?>" />
+    <input type="text" name="user" value="<?php echo $user; ?>" />
+    <input type="text" name="pw" value="<?php echo $password; ?>" />
+    <input type="text" placeholder="game_id" name="game_id"/>
+    <input type="text" placeholder="col_id" name="col_id"/>
+    <input type="text" placeholder="row_id" name="row_id"/>
+    <p> <input type="submit" value="Test Update Game" /></p>
 </form>
 
 </body>
