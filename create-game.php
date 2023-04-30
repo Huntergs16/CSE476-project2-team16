@@ -40,6 +40,7 @@ if (!$rows) {
     exit;
 } else {
     $game_id = $pdo->lastInsertId();
+    echo "<connect4 status=\"yes\" game_id=\"$game_id\" /> \n";
     createGameBoard($pdo, $game_id);
     loadInitialGame($pdo, $game_id);
 }
