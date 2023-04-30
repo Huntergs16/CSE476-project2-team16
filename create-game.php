@@ -71,7 +71,7 @@ function loadInitialGame($pdo, $game_id) {
     $query = "SELECT COUNT(*) FROM games WHERE game_id = $game_id";
     $result = $pdo->query($query)->fetchColumn();
     if ($result == 0) {
-        echo '<connect4 status="no" msg="game does not exist">';
+        echo '<connect4 status="no" msg="game does not exist" />';
         exit;
     }
 
@@ -81,7 +81,7 @@ function loadInitialGame($pdo, $game_id) {
 
     $row = $res->fetchAll();
 
-    echo "<connect4 status=\"yes\">";
+    echo '<connect4 status="yes">';
     echo "\n";
 
     foreach ($row as $rowItem) {

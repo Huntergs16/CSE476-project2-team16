@@ -21,7 +21,7 @@ $games_query = "SELECT game_id, player1_id from games WHERE player2_id IS NULL";
 
 $rows = $pdo->query($games_query);
 
-echo "<connect4 status=\"yes\">";
+echo '<connect4 status="yes">';
 echo "\n";
 foreach($rows as $row ) {
     $game_id = $row['game_id'];
@@ -32,5 +32,5 @@ foreach($rows as $row ) {
 
     echo "<connect4 game_id=\"$game_id\" player1=\"$username\" />\r\n";
 }
-echo "</connect4>";
+echo '</connect4>';
 exit;

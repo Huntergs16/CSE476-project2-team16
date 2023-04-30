@@ -9,11 +9,13 @@ if(!isset($_GET['user'])) {
     echo '<connect4 status="no" msg="missing user" />';
     exit;
 }
+
 // Ensure the magic post item exists
 if(!isset($_GET['magic'])) {
     echo '<connect4 status="no" msg="missing magic" />';
     exit;
 }
+
 // Ensure the password post item exists
 if(!isset($_GET['pw'])) {
     echo '<connect4 status="no" msg="missing password" />';
@@ -32,9 +34,9 @@ $pdo = pdo_connect();
 $userid = getUser($pdo, $user, $password);
 
 if ($userid) {
-    echo "<connect4 status=\"yes\" msg=\"login successful\">";
-//    echo "<connect4 status=\"yes\" userid='$userid'/>\r </connect4>";
+    echo '<connect4 status="yes" msg="login successful" />';
     exit;
 } else {
-    echo '<connect4 status="no" msg="login attempt failed">';
+    echo '<connect4 status="no" msg="login attempt failed" />';
+    exit;
 }

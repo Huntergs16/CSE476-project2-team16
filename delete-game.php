@@ -52,15 +52,15 @@ function deleter($pdo, $idQ) {
     }
     $query = "delete from columns where game_id=$idQ";
     if(!$pdo->query($query)) {
-        echo '<connect4 status="no" msg="deletefail">' . $query . '</connect4>';
+        echo '<connect4 status="no" msg="deletefail" />' . $query . '</connect4>';
         exit;
     }
 
     $query = "delete from games where game_id=$idQ";
     if(!$pdo->query($query)) {
-        echo '<connect4 status="no" msg="deletefail">' . $query . '</connect4>';
+        echo '<connect4 status="no" msg="deletefail" />' . $query . '</connect4>';
         exit;
     }
-    echo "<connect4 status=\"yes\" msg=\"delete successful\">";
+    echo "<connect4 status=\"yes\" msg=\"delete successful\" />";
     exit;
 }

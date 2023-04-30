@@ -79,7 +79,7 @@ function doesGameExist($pdo, $game_id){
     $query = "SELECT COUNT(*) FROM games WHERE game_id = $game_id";
     $result = $pdo->query($query)->fetchColumn();
     if ($result == 0) {
-        echo '<connect4 status="no" msg="game does not exist">';
+        echo '<connect4 status="no" msg="game does not exist" />';
         exit;
     }
 }
@@ -111,7 +111,7 @@ QUERY;
 
     $pdo->query($query);
 
-    echo '<connect4 status="yes" msg="piece placed">';
+    echo '<connect4 status="yes" msg="piece placed" />';
 }
 
 function whichPlayer($pdo, $game_id, $user_id) {

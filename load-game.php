@@ -43,7 +43,7 @@ $userid = getUser($pdo, $user, $password);
 if ($userid) {
     loadGame($pdo, $game_id, $userid);
 } else {
-    echo '<connect4 status="no" msg="user invalid">';
+    echo '<connect4 status="no" msg="user invalid" />';
     exit;
 }
 
@@ -53,7 +53,7 @@ function loadGame($pdo, $game_id, $user_id) {
     $query = "SELECT COUNT(*) FROM games WHERE game_id = $game_id";
     $result = $pdo->query($query)->fetchColumn();
     if ($result == 0) {
-        echo '<connect4 status="no" msg="game does not exist">';
+        echo '<connect4 status="no" msg="game does not exist" />';
         exit;
     }
 
@@ -67,7 +67,7 @@ function loadGame($pdo, $game_id, $user_id) {
 
     $row = $res->fetchAll();
 
-    echo "<connect4 status=\"yes\">";
+    echo "<connect4 status=\"yes\" >";
     echo "\n";
 
     foreach ($row as $rowItem) {

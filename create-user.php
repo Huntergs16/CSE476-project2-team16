@@ -8,11 +8,13 @@ if(!isset($_POST['user'])) {
     echo '<connect4 status="no" msg="missing user" />';
     exit;
 }
+
 // Ensure the magic post item exists
 if(!isset($_POST['magic'])) {
     echo '<connect4 status="no" msg="missing magic" />';
     exit;
 }
+
 // Ensure the password post item exists
 if(!isset($_POST['pw'])) {
     echo '<connect4 status="no" msg="missing password" />';
@@ -60,7 +62,7 @@ VALUES($userq, $passwordq)
 QUERY;
 
     if(!$pdo->query($query)) {
-        echo '<connect4 status="no" msg="insertfail">' . $query . '</connect4>';
+        echo '<connect4 status="no" msg="insertfail" />' . $query . '</connect4>';
         exit;
     }
 
