@@ -84,5 +84,12 @@ function loadGame($pdo, $game_id, $user_id) {
                 row4=\"$spot4\" row5=\"$spot5\" row6=\"$spot6\"/>\r \n";
     }
     echo "</connect4>";
+
+    $current_player_query = "SELECT current_player_id FROM games WHERE game_id=$game_id";
+    $result = $pdo->query($current_player_query);
+    $current_player_id = $result->fetch()["current_player_id"];
+
+    echo "<connect4 status=\"yes\" current_player_id=\"$current_player_id\" />";
+
     exit;
 }
