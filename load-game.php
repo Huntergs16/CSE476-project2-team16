@@ -58,7 +58,7 @@ function loadGame($pdo, $game_id, $user_id) {
     }
 
     // Add the current user as the second player
-    $add_second_player_query = "UPDATE games SET player2_id = $user_id WHERE game_id = $game_id";
+    $add_second_player_query = "UPDATE games SET player2_id = $user_id WHERE game_id = $game_id AND player2_id IS NULL";
     $pdo->query($add_second_player_query);
 
     // echo the gameboard.
